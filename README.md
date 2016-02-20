@@ -22,4 +22,4 @@ finish the plotter type Strg + C
 
 # Usage #
 
-
+vplotter reads g-code files
