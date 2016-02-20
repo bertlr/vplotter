@@ -11,7 +11,7 @@
 
     git clone https://github.com/bertlr/vplotter.git
     cd vplotter
-    make -f Makefile CONF=Release clean
+    make -f Makefile CONF=Release
 
 run the plotter as root:
 
