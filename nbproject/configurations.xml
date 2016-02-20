@@ -33,6 +33,7 @@
     <itemPath>.gitignore</itemPath>
     <itemPath>README.md</itemPath>
     <itemPath>gcode.l</itemPath>
+    <itemPath>LICENSE.txt/newfile</itemPath>
     <itemPath>test.nc</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -55,6 +56,8 @@
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LICENSE.txt/newfile" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -105,6 +108,8 @@
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LICENSE.txt/newfile" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
