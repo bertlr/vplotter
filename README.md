@@ -4,14 +4,14 @@
 - install git:
 
 
-    sudo apt-get install git-core
+        sudo apt-get install git-core
 
 - install wiringPi from http://wiringpi.com/download-and-install/
 
 
-    git clone https://github.com/bertlr/vplotter.git
-    cd vplotter
-    make -f Makefile CONF=Release
+        git clone https://github.com/bertlr/vplotter.git
+        cd vplotter
+        make -f Makefile CONF=Release
 
 run the plotter as root:
 
