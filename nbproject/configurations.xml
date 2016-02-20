@@ -30,6 +30,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>.gitignore</itemPath>
+    <itemPath>README.md</itemPath>
     <itemPath>gcode.l</itemPath>
     <itemPath>test.nc</itemPath>
   </logicalFolder>
@@ -48,6 +50,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path=".gitignore" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
@@ -55,6 +59,8 @@
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Machine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gcode.l" ex="false" tool="3" flavor2="0">
         <customTool>
@@ -94,6 +100,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path=".gitignore" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
@@ -101,6 +109,8 @@
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Machine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="gcode.l" ex="false" tool="3" flavor2="0">
       </item>
