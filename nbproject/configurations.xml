@@ -33,8 +33,6 @@
     <itemPath>.gitignore</itemPath>
     <itemPath>README.md</itemPath>
     <itemPath>gcode.l</itemPath>
-    <itemPath>LICENSE.txt/newfile</itemPath>
-    <itemPath>test.nc</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -57,8 +55,6 @@
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="LICENSE.txt/newfile" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Machine.h" ex="false" tool="3" flavor2="0">
@@ -74,8 +70,6 @@
       <item path="lex.xx.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="test.nc" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -109,8 +103,6 @@
       </item>
       <item path="Geometry.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="LICENSE.txt/newfile" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Machine.h" ex="false" tool="3" flavor2="0">
@@ -122,8 +114,6 @@
       <item path="lex.xx.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="test.nc" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
