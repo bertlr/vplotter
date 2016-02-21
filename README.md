@@ -13,13 +13,23 @@
         cd vplotter
         make -f Makefile CONF=Release
 
+# Wiring #
+
+![wiring](vplotter_wiring.png "wiring")
+
 # Usage #
 
 run the plotter as root:
 
-    sudo dist/Release/GNU-Linux/vplotter --x0=100 --y0=-650 --baselength=900 --z_up=13 --z_down=8 --steps=40,4
+    sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1
+
+or provide a g-code file:
+
+    sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1 < test.ngc
 
 
-finish the plotter type <kbd>Ctrl</kbd>+<kbd>C</kbd>
+finish the plotter type <kbd>Ctrl</kbd>+<kbd>C</kbd> or type in the konsole:
+    
+    M30
 
 vplotter reads g-code files

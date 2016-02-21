@@ -142,7 +142,8 @@ int main(int argc, char** argv) {
             << "G1 Z0" << std::endl
             << "G1 X0 Y" << a << std::endl
             << "G1 Z1" << std::endl
-            << "G0 X0 Y0" << std::endl;
+            << "G0 X0 Y0" << std::endl
+            << "( the length of the line should be: " << sqrt(a*a+b*b) << "mm )" << std::endl;
     
     
     
