@@ -39,9 +39,9 @@
 #include "Geometry.h"
 
 // value for the servo
-#define SERVOUP        13
+//#define SERVOUP        13
 // value for the servo
-#define SERVODOWN      8
+//#define SERVODOWN      8
 
 // step wiringpi pin 0
 #define LEFT_STEPPER01 0
@@ -57,12 +57,14 @@
 // Wiring pi for the servo pin 1 
 #define Z_SERVO 1
 
-Machine::Machine() {
-    this->BaseLength = 690.0;
-    this->X0 = 135;
-    this->Y0 = -40 - 650;
+Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {
+    this->BaseLength = _BaseLength;
+    this->X0 = _X0;
+    this->Y0 = _Y0;
 
-    this->StepsPermm = 40.0; // 51   //2000.0 / 98.0;
+    this->StepsPermm = _StepsPermm; // 51   //2000.0 / 98.0;
+    this->z_down = _z_down;
+    this->z_up = _z_up;
 
     this->currentX = 0.0;
     this->currentY = 0.0;
@@ -72,9 +74,9 @@ Machine::Machine() {
         exit(1);
     }
 
-    softPwmCreate(Z_SERVO, SERVOUP, 200);
+    softPwmCreate(Z_SERVO, this->z_up, 200);
 
-    this->penDownUp(false);
+    this->penDown(false);
 
 
     pinMode(LEFT_STEPPER01, OUTPUT);
@@ -96,7 +98,7 @@ Machine::Machine() {
 
 
 
-    std::cout << "X0=" << this->X0 << ", Y0=" << this->Y0 << ", cord left=" << this->CordLengthLeft << ", cord right=" << this->CordLengthRight << ", Steps per mm=" << this->StepsPermm << std::endl;
+    std::cout << "X0=" << this->X0 << ", Y0=" << this->Y0 << ", Steps per mm=" << this->StepsPermm << std::endl;
 
 }
 
@@ -319,14 +321,14 @@ int Machine::MoveToPoint(double X, double Y, double F) {
  * raise and down the pen
  * @param down
  */
-void Machine::penDownUp(bool down) {
+void Machine::penDown(bool down) {
     if (down) {
-        softPwmWrite(Z_SERVO, SERVODOWN);
+        softPwmWrite(Z_SERVO, this->z_down);
         usleep(500000);
         softPwmWrite(Z_SERVO, 0);
 
     } else {
-        softPwmWrite(Z_SERVO, SERVOUP);
+        softPwmWrite(Z_SERVO, this->z_up);
         usleep(500000);
         softPwmWrite(Z_SERVO, 0);
 

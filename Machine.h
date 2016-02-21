@@ -32,18 +32,21 @@
 
 class Machine {
 public:
-    Machine();
+    //Machine();
+    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up);
     Machine(const Machine& orig);
     virtual ~Machine();
     //int CalculateLine(double moveToX, double moveToY);
     int MoveToPoint(double X, double Y, double F);
-    void penDownUp(bool down);
+    void penDown(bool down);
 private:
     double currentX;
     double currentY;
     long CordLengthLeft;
     long CordLengthRight;
     double BaseLength;
+    int z_down;
+    int z_up;
     /**
     
      horizontal direction from the left stepper

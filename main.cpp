@@ -37,6 +37,8 @@
 #include <cfloat>
 #include "Machine.h"
 #include "Geometry.h"
+#include <getopt.h>
+
 // siehe manpages flex :
 #undef yyFlexLexer
 #define yyFlexLexer xxFlexLexer
@@ -61,8 +63,101 @@ int main(int argc, char** argv) {
     int M_command = -1;
     int G_command = -1;
 
+    double base_length = 650.0;
+    double x0 = 100.0;
+    double y0 = -700.0;
+    double stepsPermm = 40.0;
+    int servo_up = 13;
+    int servo_down = 8;
 
-    Machine m;
+    int c;
+
+    // Read the options
+    while (1) {
+        static struct option long_options[] = {
+
+            /* These options don’t set a flag.
+               We distinguish them by their indices. */
+            {"baselength", required_argument, 0, 'b'},
+            {"y0", required_argument, 0, 'y'},
+            {"x0", required_argument, 0, 'x'},
+            {"steps", required_argument, 0, 's'},
+            {"z_up", required_argument, 0, 'u'},
+            {"z_down", required_argument, 0, 'd'},
+
+            {0, 0, 0, 0}
+        };
+        /* getopt_long stores the option index here. */
+        int option_index = 0;
+
+        c = getopt_long(argc, argv, "b:y:x:s:u:p:",
+                long_options, &option_index);
+
+        /* Detect the end of the options. */
+        if (c == -1)
+            break;
+
+        switch (c) {
+
+
+            case 'b':
+                base_length = atof(optarg);
+                std::cout << "option -b with value " << base_length << std::endl;
+                break;
+
+            case 'y':
+                y0 = atof(optarg);
+                std::cout << "option -y with value " << y0 << std::endl;
+                break;
+
+            case 'x':
+                x0 = atof(optarg);
+                std::cout << "option -x with value " << x0 << std::endl;
+                break;
+
+            case 's':
+                stepsPermm = atof(optarg);
+                std::cout << "option -s with value " << stepsPermm << std::endl;
+                break;
+
+            case 'u':
+                servo_up = atoi(optarg);
+                std::cout << "option -u with value " << servo_up << std::endl;
+                break;
+
+            case 'd':
+                 servo_down = atof(optarg);
+                std::cout << "option -d with value " << servo_down << std::endl;
+
+                break;
+
+            default:
+                abort();
+        }
+    }
+    // end read options
+    double b = base_length - 2.0*x0;
+    double a = -y0*b/(x0+b);
+    std::cout << "G0 X" << b << " Y0" << std::endl
+            << "G1 Z0" << std::endl
+            << "G1 X0 Y" << a << std::endl
+            << "G1 Z1" << std::endl
+            << "G0 X0 Y0" << std::endl;
+    
+    
+    
+    
+    /*
+     
+     
+     
+     
+     
+     */
+
+
+
+    Machine m(base_length, x0, y0, stepsPermm, servo_down,  servo_up);
     std::cout << "Starten\n";
 
     std::string line;
@@ -111,10 +206,10 @@ int main(int argc, char** argv) {
             if (z != z_prev) {
                 if (z > 0) {
                     std::cout << "pen up\n";
-                    m.penDownUp(false);
+                    m.penDown(false);
                 } else {
                     std::cout << "pen down\n";
-                    m.penDownUp(true);
+                    m.penDown(true);
                 }
             }
             if (x != x_prev || y != y_prev) {
@@ -161,7 +256,9 @@ int main(int argc, char** argv) {
         }
 
         if (M_command == 30) {
-
+            m.penDown(false);
+            m.MoveToPoint(0.0, 0.0, 0.0);
+            return 0;
 
         }
         //std::cout << "x =" << x << " y=" << y << std::endl;
