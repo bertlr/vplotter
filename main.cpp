@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
     int servo_down = 8;
 
     int c;
-
+    int count_options = 0;
     // Read the options
     while (1) {
         static struct option long_options[] = {
@@ -102,64 +102,57 @@ int main(int argc, char** argv) {
 
             case 'b':
                 base_length = atof(optarg);
-                std::cout << "option -b with value " << base_length << std::endl;
+                std::cout << "baselength = " << base_length << std::endl;
+                count_options++;
                 break;
 
             case 'y':
                 y0 = atof(optarg);
-                std::cout << "option -y with value " << y0 << std::endl;
+                std::cout << "y0 = " << y0 << std::endl;
+                count_options++;
                 break;
 
             case 'x':
                 x0 = atof(optarg);
-                std::cout << "option -x with value " << x0 << std::endl;
+                std::cout << "x0 = " << x0 << std::endl;
+                count_options++;
                 break;
 
             case 's':
                 stepsPermm = atof(optarg);
-                std::cout << "option -s with value " << stepsPermm << std::endl;
+                std::cout << "steps = " << stepsPermm << std::endl;
+                count_options++;
                 break;
 
             case 'u':
                 servo_up = atoi(optarg);
-                std::cout << "option -u with value " << servo_up << std::endl;
+                std::cout << "z_up = " << servo_up << std::endl;
+                count_options++;
                 break;
 
             case 'd':
-                 servo_down = atof(optarg);
-                std::cout << "option -d with value " << servo_down << std::endl;
-
+                servo_down = atof(optarg);
+                std::cout << "z_down = " << servo_down << std::endl;
+                count_options++;
                 break;
 
             default:
                 abort();
         }
     }
+    if (count_options < 6) {
+        std::cout << "not all options are set" << std::endl;
+        exit(1);
+    }
+
     // end read options
-    double b = base_length - 2.0*x0;
-    double a = -y0*b/(x0+b);
-    std::cout << "G0 X" << b << " Y0" << std::endl
-            << "G1 Z0" << std::endl
-            << "G1 X0 Y" << a << std::endl
-            << "G1 Z1" << std::endl
-            << "G0 X0 Y0" << std::endl
-            << "( the length of the line should be: " << sqrt(a*a+b*b) << "mm )" << std::endl;
-    
-    
-    
-    
-    /*
-     
-     
-     
-     
-     
-     */
+    std::cout << "--------------------------------------------------------------" << std::endl
+            << "                  VPLOTTER                                    " << std::endl
+            << "--------------------------------------------------------------" << std::endl;
 
 
-
-    Machine m(base_length, x0, y0, stepsPermm, servo_down,  servo_up);
-    std::cout << "Starten\n";
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
+    std::cout << "started\n";
 
     std::string line;
 
@@ -219,11 +212,11 @@ int main(int argc, char** argv) {
                     //m.CalculateLine(x, y);
                     m.MoveToPoint(x, y, 0.0);
                 } else if (G_command == 1) {
-                    std::cout <<  "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
+                    std::cout << "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
 
                     m.MoveToPoint(x, y, f);
                 } else if (G_command == 2 || G_command == 3) {
-                    std::cout <<  "   -> arc to: " << x << ", " << y << std::endl;
+
                     bool ccw;
                     // because the y-axis is from top (-) to bottom (+)
                     if (G_command == 2) {
@@ -238,6 +231,7 @@ int main(int argc, char** argv) {
                     } else {
                         std::cout << "Error: either R or I and J" << std::endl;
                     }
+                    std::cout << "   -> arc to: " << x << ", " << y << " r=" << r << std::endl;
                     Geometry g;
                     std::vector<Point> points = g.getArcPolygon(Point(x_prev, y_prev), Point(x, y), r, ccw);
                     for (int i = 0; i < points.size(); i++) {
