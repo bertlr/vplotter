@@ -38,11 +38,6 @@
 #include <softPwm.h>
 #include "Geometry.h"
 
-// value for the servo
-//#define SERVOUP        13
-// value for the servo
-//#define SERVODOWN      8
-
 // step wiringpi pin 0
 #define LEFT_STEPPER01 0
 // direction  wiring pin 1
@@ -57,6 +52,15 @@
 // Wiring pi for the servo pin 1 
 #define Z_SERVO 1
 
+/**
+ * 
+ * @param _BaseLength sets the distance between the stepper motors in mm
+ * @param _X0  horizontal distance to the zero point from the left stepper
+ * @param _Y0  vertical distance to the zero point from the left stepper
+ * @param _StepsPermm  Steps per mm, for microsteping: 1600 / circumference of the pulley
+ * @param _z_down  value for the servo to turn the pen down to the paper
+ * @param _z_up   value for the servo to lift the pen from the paper
+ */
 Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {
     this->BaseLength = _BaseLength;
     this->X0 = _X0;
@@ -291,11 +295,11 @@ int Machine::MoveToPoint(double X, double Y, double F) {
         F = 100000; // big number for rapid speed
     }
     F *= 1.2; // correction factor, the value fits better
-    time = 1000000 * 60/(this->StepsPermm*F);
-    if(time < 100){
-        time = 100;
+    time = 1000000.0 * 60.0/(this->StepsPermm*F);
+    if(time < 200){
+        time = 200;
     }
-    std::cout << "time=" << time << std::endl;
+    //std::cout << "time=" << time << std::endl;
     
     Point p2(X,Y);
     p2 = movePoint(p2, -this->currentX, -this->currentY);

@@ -42,11 +42,11 @@ The plotter needs some commandline arguments:
 
 run the plotter as root:
 
-    sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1
+    sudo dist/Release/GNU-Linux/vplotter --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1
 
 provide a g-code file test.ngc:
 
-    sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1 < test.ngc
+    sudo dist/Release/GNU-Linux/vplotter --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1 < test.ngc
 
 
 finish the plotter type <kbd>Ctrl</kbd>+<kbd>C</kbd> or type in the konsole:

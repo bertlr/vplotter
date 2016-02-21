@@ -170,7 +170,7 @@ int main(int argc, char** argv) {
         is << line;
 
 
-        std::cout << line << std::endl;
+        std::cout << line;
 
         xxFlexLexer lexer(&is, &os); // das prefix "xx" siehe flexerfile
         int ret = 0;
@@ -215,15 +215,15 @@ int main(int argc, char** argv) {
             }
             if (x != x_prev || y != y_prev) {
                 if (G_command == 0) {
-                    std::cout << line << "   -> rapid  to: " << x << ", " << y << std::endl;
+                    std::cout << "   -> rapid  to: " << x << ", " << y << std::endl;
                     //m.CalculateLine(x, y);
                     m.MoveToPoint(x, y, 0.0);
                 } else if (G_command == 1) {
-                    std::cout << line << "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
+                    std::cout <<  "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
 
                     m.MoveToPoint(x, y, f);
                 } else if (G_command == 2 || G_command == 3) {
-                    std::cout << line << "   -> arc to: " << x << ", " << y << std::endl;
+                    std::cout <<  "   -> arc to: " << x << ", " << y << std::endl;
                     bool ccw;
                     // because the y-axis is from top (-) to bottom (+)
                     if (G_command == 2) {

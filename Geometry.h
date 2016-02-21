@@ -1,8 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************************
+ *   Copyright (C) 2016 by Herbert Roider                                  *
+ *   herbert.roider@utanet.at                                                     *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 3 of the License, or     *
+
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 
 /* 
  * File:   Geometry.h
@@ -32,6 +47,8 @@ Point toCartesian(Point polar);
 Point movePoint(Point p, double x, double y);
 
 const double PI  =3.141592653589793238463;
+
+
 class Geometry {
 public:
     Geometry();
@@ -41,7 +58,7 @@ public:
     Point getArcCenterPoint(Point begin, Point end, double r, bool ccw); 
     std::vector<Point> getArcPolygon(Point begin, Point end, double r, bool ccw);
     
-    int ccw(Point p0, Point p1, Point p2);
+    //int ccw(Point p0, Point p1, Point p2);
     
 private:
 

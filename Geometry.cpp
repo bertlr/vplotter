@@ -1,8 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************************
+ *   Copyright (C) 2016 by Herbert Roider                                  *
+ *   herbert.roider@utanet.at                                                     *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 3 of the License, or     *
+
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 
 /* 
  * File:   Geometry.cpp
@@ -101,28 +116,28 @@ Point Geometry::getArcCenterPoint(Point begin, Point end, double r, bool ccw) {
     return center;
 }
 
-int Geometry::ccw(Point p0, Point p1, Point p2) {
-    double dx1, dx2, dy1, dy2;
-    dx1 = p1.x - p0.x;
-    dy1 = p1.y - p0.y;
-    dx2 = p2.x - p0.x;
-    dy2 = p2.y - p0.y;
-    if (dx1 * dy2 > dy1 * dx2) {
-        return 1;
-    }
-    if (dx1 * dy2 < dy1 * dx2) {
-        return -1;
-    }
-    if ((dx1 * dx2 < 0) || (dy1 * dy2 < 0)) {
-        return -1;
-    }
-    if ((dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2)) {
-        return 1;
-    }
-
-    return 0;
-
-}
+//int Geometry::ccw(Point p0, Point p1, Point p2) {
+//    double dx1, dx2, dy1, dy2;
+//    dx1 = p1.x - p0.x;
+//    dy1 = p1.y - p0.y;
+//    dx2 = p2.x - p0.x;
+//    dy2 = p2.y - p0.y;
+//    if (dx1 * dy2 > dy1 * dx2) {
+//        return 1;
+//    }
+//    if (dx1 * dy2 < dy1 * dx2) {
+//        return -1;
+//    }
+//    if ((dx1 * dx2 < 0) || (dy1 * dy2 < 0)) {
+//        return -1;
+//    }
+//    if ((dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2)) {
+//        return 1;
+//    }
+//
+//    return 0;
+//
+//}
 /** calculate multiple points on the arc without the first point.
  * 
  * @param begin first point of the arc
@@ -134,8 +149,8 @@ int Geometry::ccw(Point p0, Point p1, Point p2) {
 std::vector<Point> Geometry::getArcPolygon(Point begin, Point end, double r, bool ccw) {
     //std::cout << " begin=" << begin.x << ", " << begin.y << std::endl;
     Point center = this->getArcCenterPoint(begin, end, r, ccw);
-    std::cout << " center=" << center.x << ", " << center.y << ", r=" << r << std::endl;
-    std::cout << " end=" << end.x << ", " << end.y << std::endl;
+//    std::cout << " center=" << center.x << ", " << center.y << ", r=" << r << std::endl;
+//    std::cout << " end=" << end.x << ", " << end.y << std::endl;
     std::vector<Point> points;
     
     Point begin_polar = toPolar(movePoint(begin, -center.x, -center.y));
