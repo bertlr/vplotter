@@ -1,12 +1,12 @@
 # Install #
 
-- install raspian from https://www.raspberrypi.org/downloads/
+- install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
 - install git:
 
 
         sudo apt-get install git-core
 
-- install wiringPi from http://wiringpi.com/download-and-install/
+- install wiringPi: [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
 
 
         git clone https://github.com/bertlr/vplotter.git
@@ -15,15 +15,36 @@
 
 # Wiring #
 
+The plotter uses EasyDriver for the stepper motors:
+[www.schmalzhaus.com/EasyDriver/](http://www.schmalzhaus.com/EasyDriver/)
+
 ![wiring](vplotter_wiring.png "wiring")
 
 # Usage #
+
+The vplotter reads g-code files.
+
+![Geometry](vplotter_geometry.png)
+
+The plotter needs some commandline arguments:
+
+- x0      :    horizontal distance from the left stepper motor to the zero point of the canvas in mm. see the image 
+- y0      :    vertical distance from the left stepper motor to the zero point of the canvas in mm. see the image
+- baselength : the distance between the stepper motors in mm, see the image.
+- z_up    :    a value for the servo motor to lift the pen (1 - 100)
+- z_down  :    a value for the servo motro to move down the pen (1 - 100)
+- steps   :    the count of steps to move the cord at 1mm: 
+    
+    1600 / circumference of the pulley
+    
+    for microsteps
+
 
 run the plotter as root:
 
     sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1
 
-or provide a g-code file:
+provide a g-code file test.ngc:
 
     sudo dist/Release/GNU-Linux/vplotter  --x0=170 --y0=-720 --baselength=685 --z_up=13 --z_down=8 --steps=40.1 < test.ngc
 
@@ -32,4 +53,14 @@ finish the plotter type <kbd>Ctrl</kbd>+<kbd>C</kbd> or type in the konsole:
     
     M30
 
-vplotter reads g-code files
+The Z-axis can only lift or drop the pen. A value >0 lift the pen, and <=0 drop the pen.
+
+    G0 Z0 (move the pen down)
+    G0 Z1 (raise the pen up)
+
+It is possible to set a feed for G1 like
+    
+    G1 X100 F200
+
+but this is not exact.
+
