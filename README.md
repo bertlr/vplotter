@@ -63,4 +63,11 @@ It is possible to set a feed for G1 like
     G1 X100 F200
 
 but this is not exact.
+It supports G2 and G3 for circles with radius:
+    
+    G2 X10 Y20 R20
+
+or with relative center point coordinates:
+
+    G2 X10 Y0 I5 J10
 

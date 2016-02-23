@@ -9,9 +9,9 @@
         <group>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/Machine.cpp</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/README.md</file>
-            <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/test.nc</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/gcode.l</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/Geometry.h</file>
+            <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/lex.xx.cc</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/Machine.h</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/Geometry.cpp</file>
             <file>rfs://pi@10.0.0.96:22/home/pi/vplotter/main.cpp</file>

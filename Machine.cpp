@@ -296,6 +296,7 @@ int Machine::MoveToPoint(double X, double Y, double F) {
     }
     F *= 1.2; // correction factor, the value fits better
     time = 1000000.0 * 60.0/(this->StepsPermm*F);
+    // set the time per step not too small:
     if(time < 200){
         time = 200;
     }

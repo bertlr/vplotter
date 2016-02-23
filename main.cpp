@@ -152,23 +152,23 @@ int main(int argc, char** argv) {
 
 
     Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
-    std::cout << "started\n";
+    std::cout << "started" << std::endl;
 
     std::string line;
-
+    int linenumber = 0;
     while (std::getline(std::cin, line)) {
         std::stringstream is;
         std::stringstream os;
+        linenumber++;
+        std::cout << linenumber << ": ";
 
         is << line;
 
-
         std::cout << line;
-
+        // parse one line:
         xxFlexLexer lexer(&is, &os); // das prefix "xx" siehe flexerfile
         int ret = 0;
         do {
-
             ret = lexer.yylex();
             std::string s = lexer.YYText();
             s.erase(0, 1);
@@ -191,29 +191,25 @@ int main(int argc, char** argv) {
             } else if (ret == 9) {
                 f = ::atof(s.c_str());
             }
-
-
         } while (ret != 0);
 
 
         if (G_command == 0 || G_command == 1 || G_command == 2 || G_command == 3) {
             if (z != z_prev) {
                 if (z > 0) {
-                    std::cout << "pen up\n";
+                    std::cout << "pen up" << std::endl;
                     m.penDown(false);
                 } else {
-                    std::cout << "pen down\n";
+                    std::cout << "pen down" << std::endl;
                     m.penDown(true);
                 }
             }
             if (x != x_prev || y != y_prev) {
                 if (G_command == 0) {
                     std::cout << "   -> rapid  to: " << x << ", " << y << std::endl;
-                    //m.CalculateLine(x, y);
                     m.MoveToPoint(x, y, 0.0);
                 } else if (G_command == 1) {
                     std::cout << "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
-
                     m.MoveToPoint(x, y, f);
                 } else if (G_command == 2 || G_command == 3) {
 
@@ -230,6 +226,7 @@ int main(int argc, char** argv) {
 
                     } else {
                         std::cout << "Error: either R or I and J" << std::endl;
+                        exit(1);
                     }
                     std::cout << "   -> arc to: " << x << ", " << y << " r=" << r << std::endl;
                     Geometry g;
@@ -241,7 +238,6 @@ int main(int argc, char** argv) {
                         //m.CalculateLine(x, y);
                         m.MoveToPoint(x, y, f);
                     }
-                    //m.CalculateLine(x, y);
                 }
 
 
