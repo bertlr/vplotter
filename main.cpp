@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
 
     Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
     std::cout << "started" << std::endl;
-
+    
     std::string line;
     int linenumber = 0;
     while (std::getline(std::cin, line)) {

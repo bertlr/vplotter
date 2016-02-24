@@ -117,20 +117,21 @@ Machine::~Machine() {
  *
  * @param direction -1 or +1
  * @param count    count of steps
- * @param time     duration per step [microsecond]
+ * @param time     duration per step [microsecond], for G0 is 200 a good value
  */
-void Machine::MakeStepLeft(int direction, int count = 1, unsigned int time = 100) {
+void Machine::MakeStepLeft(int direction, int count, unsigned int time) {
 
     if (direction > 0) {
         digitalWrite(LEFT_STEPPER02, 1);
     } else {
         digitalWrite(LEFT_STEPPER02, 0);
     }
+    time /= 2;
     for (int i = 0; i < count; i++) {
         digitalWrite(LEFT_STEPPER01, 1);
-        ::usleep(time/2);
+        ::usleep(time);
         digitalWrite(LEFT_STEPPER01, 0);
-        ::usleep(time/2);
+        ::usleep(time);
         this->CordLengthLeft += direction;
     }
 
@@ -141,28 +142,28 @@ void Machine::MakeStepLeft(int direction, int count = 1, unsigned int time = 100
  * 
  * @param direction -1 or +1
  * @param count    count of steps
- * @param time     duration per step [microsecond]
-*/
-void Machine::MakeStepRight(int direction, int count = 1, unsigned int time = 100) {
+ * @param time     duration per step [microsecond], for G0 is 200 a good value
+ */
+void Machine::MakeStepRight(int direction, int count, unsigned int time) {
 
     if (direction > 0) {
         digitalWrite(RIGHT_STEPPER02, 0);
     } else {
         digitalWrite(RIGHT_STEPPER02, 1);
     }
+    time /= 2;
     for (int i = 0; i < count; i++) {
         digitalWrite(RIGHT_STEPPER01, 1);
-        ::usleep(time/2);
+        ::usleep(time);
         digitalWrite(RIGHT_STEPPER01, 0);
-        ::usleep(time/2);
+        ::usleep(time);
         this->CordLengthRight += direction;
     }
 
 }
 
-
 /**
- * moves max. 1000 steps per Motor in direction to the given point.
+ * Moves to the given point. The path is not a straight line, therefore it should not be too long!
  * @param X
  * @param Y
  * @param time   time per step  [microsecond]
@@ -173,7 +174,6 @@ bool Machine::moveShortDist(double X, double Y, unsigned int time) {
     double newCordLengthRight;
     int dirRight;
     int dirLeft;
-    int max_steps = 1000;
     bool ready = true;
 
     X += this->X0;
@@ -212,54 +212,25 @@ bool Machine::moveShortDist(double X, double Y, unsigned int time) {
     //std::cout << "steps left=" << stepsLeft << ", right=" << stepsRight << std::endl;
 
     double fact;
-    
+
     if (stepsLeft < 0.5 && stepsRight < 0.5) {
         return ready;
-        
     } else if (stepsRight < 0.5) {
-
-        if (stepsLeft > max_steps) {
-            stepsLeft = max_steps;
-            ready = false;
-
-        }
-        this->MakeStepLeft(dirLeft, stepsLeft);
-
+        this->MakeStepLeft(dirLeft, stepsLeft, time);
     } else if (stepsLeft < 0.5) {
-
-        if (stepsRight > max_steps) {
-            stepsRight = max_steps;
-            ready = false;
-
-        }
         this->MakeStepRight(dirRight, stepsRight, time);
-
-
-
     } else if (stepsLeft >= stepsRight) {
         fact = stepsLeft / stepsRight;
-        if (stepsLeft > max_steps) {
-            stepsLeft = max_steps;
-            stepsRight = stepsLeft / fact;
-            ready = false;
-        }
         for (double r = 0.0; r < stepsRight; r++) {
             this->MakeStepRight(dirRight, 1, time);
             this->MakeStepLeft(dirLeft, (int) (r * fact - fabs(old_CordLengthLeft - (double) this->CordLengthLeft)), time);
         }
-
     } else if (stepsRight > stepsLeft) {
         fact = stepsRight / stepsLeft;
-        if (stepsRight > max_steps) {
-            stepsRight = max_steps;
-            stepsLeft = stepsRight / fact;
-            ready = false;
-        }
         for (double l = 0.0; l < stepsLeft; l++) {
             this->MakeStepLeft(dirLeft, 1, time);
             this->MakeStepRight(dirRight, (int) (l * fact - fabs(old_CordLengthRight - (double) this->CordLengthRight)), time);
         }
-
     } else {
         std::cout << "Error  4567" << std::endl;
         exit(1);
@@ -281,7 +252,6 @@ bool Machine::moveShortDist(double X, double Y, unsigned int time) {
 
 }
 
-
 /**
  * moves the pen to a point in a straight way
  * @param X
@@ -289,34 +259,35 @@ bool Machine::moveShortDist(double X, double Y, unsigned int time) {
  * @param F Feed in mm/min
  * @return 
  */
-int Machine::MoveToPoint(double X, double Y, double F) {    
+int Machine::MoveToPoint(double X, double Y, double F) {
     unsigned int time = 0;
-    if(F <=0.0){
+    if (F <= 0.0) {
         F = 100000; // big number for rapid speed
     }
     F *= 1.2; // correction factor, the value fits better
-    time = 1000000.0 * 60.0/(this->StepsPermm*F);
+    // calculate the time of a step from feed F:
+    time = 1000000.0 * 60.0 / (this->StepsPermm * F);
     // set the time per step not too small:
-    if(time < 200){
+    if (time < 200) {
         time = 200;
     }
     //std::cout << "time=" << time << std::endl;
-    
-    Point p2(X,Y);
+
+    Point p2(X, Y);
     p2 = movePoint(p2, -this->currentX, -this->currentY);
     p2 = toPolar(p2);
     Point pi(p2); // interpolatios point
-    pi.x = 1.0; // steps of one millimeter
+    pi.x = 3.0; // steps of one millimeter
     Point pi_cart;
-    
-    while(pi.x < p2.x){
-        pi_cart = movePoint(toCartesian(pi),this->currentX, this->currentY);       
+
+    while (pi.x < p2.x) {
+        pi_cart = movePoint(toCartesian(pi), this->currentX, this->currentY);
         this->moveShortDist(pi_cart.x, pi_cart.y, time);
-        pi.x += 1.0; // steps of one millimeter
-        
+        pi.x += 3.0; // steps of one millimeter
+
     }
     this->moveShortDist(X, Y, time);
-            
+
     this->currentX = X;
     this->currentY = Y;
     return 0;
