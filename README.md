@@ -3,15 +3,15 @@
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
 - install git:
 
-
         sudo apt-get install git-core
 
 - install wiringPi: [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
-
+- build vplotter:
 
         git clone https://github.com/bertlr/vplotter.git
         cd vplotter
         make -f Makefile CONF=Release
+
 
 # Wiring #
 
@@ -33,8 +33,8 @@ The plotter needs some commandline arguments:
 - baselength : the distance between the stepper motors in mm, see the image.
 - z_up    :    a value for the servo motor to lift the pen (1 - 100)
 - z_down  :    a value for the servo motro to move down the pen (1 - 100)
-- steps   :    the count of steps to move the cord at 1mm: 
-    
+- steps   :    the count of steps to move the cord at 1mm:
+ 
     1600 / circumference of the pulley
     
     for microsteps
