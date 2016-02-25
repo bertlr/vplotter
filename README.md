@@ -1,3 +1,8 @@
+# About #
+
+Vplotter is a vertical plotter for g-code. It runs on a [Raspberry Pi](https://www.raspberrypi.org/). 
+Works with the [gcodetools](https://github.com/cnc-club/gcodetools) extension for [Inkscape](https://inkscape.org).
+
 # Install #
 
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
