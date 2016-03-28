@@ -62,6 +62,8 @@ int main(int argc, char** argv) {
 
     int M_command = -1;
     int G_command = -1;
+    // Fact to convert the values, used when inches:
+    double to_metric = 1.0;
 
     double base_length = 650.0;
     double x0 = 100.0;
@@ -153,7 +155,7 @@ int main(int argc, char** argv) {
 
     Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
     std::cout << "started" << std::endl;
-    
+
     std::string line;
     int linenumber = 0;
     while (std::getline(std::cin, line)) {
@@ -169,27 +171,43 @@ int main(int argc, char** argv) {
         xxFlexLexer lexer(&is, &os); // das prefix "xx" siehe flexerfile
         int ret = 0;
         do {
+            int G;
             ret = lexer.yylex();
             std::string s = lexer.YYText();
             s.erase(0, 1);
             if (ret == 1) {
-                G_command = ::atoi(s.c_str());
+                G = ::atoi(s.c_str());
+                switch (G) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        G_command = G;
+                        break;
+                    case 20:
+                        to_metric = 25.4;
+                        break;
+                    case 21:
+                        to_metric = 1.0;
+                        break;
+                }
+
             } else if (ret == 2) {
-                x = ::atof(s.c_str());
+                x = ::atof(s.c_str()) * to_metric;
             } else if (ret == 3) {
-                y = ::atof(s.c_str());
+                y = ::atof(s.c_str()) * to_metric;
             } else if (ret == 4) {
-                z = ::atof(s.c_str());
+                z = ::atof(s.c_str()) * to_metric;
             } else if (ret == 5) {
                 M_command = ::atoi(s.c_str());
             } else if (ret == 6) {
-                r = ::atof(s.c_str());
+                r = ::atof(s.c_str()) * to_metric;
             } else if (ret == 7) {
-                i = ::atof(s.c_str());
+                i = ::atof(s.c_str()) * to_metric;
             } else if (ret == 8) {
-                j = ::atof(s.c_str());
+                j = ::atof(s.c_str()) * to_metric;
             } else if (ret == 9) {
-                f = ::atof(s.c_str());
+                f = ::atof(s.c_str()) * to_metric;
             }
         } while (ret != 0);
 
