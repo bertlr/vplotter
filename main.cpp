@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 
     double x_prev = x;
     double y_prev = y;
-    double z_prev = z;
+    //double z_prev = z;
 
     int M_command = -1;
     int G_command = -1;
@@ -213,15 +213,15 @@ int main(int argc, char** argv) {
 
 
         if (G_command == 0 || G_command == 1 || G_command == 2 || G_command == 3) {
-            if (z != z_prev) {
-                if (z > 0) {
-                    std::cout << "pen up" << std::endl;
-                    m.penDown(false);
-                } else {
-                    std::cout << "pen down" << std::endl;
-                    m.penDown(true);
-                }
+            //if (z != z_prev) {
+            if (z > 0) {
+                //std::cout << "pen up" << std::endl;
+                m.penDown(false);
+            } else {
+                //std::cout << "pen down" << std::endl;
+                m.penDown(true);
             }
+            //}
             if (x != x_prev || y != y_prev) {
                 if (G_command == 0) {
                     std::cout << "   -> rapid  to: " << x << ", " << y << std::endl;
@@ -276,7 +276,7 @@ int main(int argc, char** argv) {
         M_command = -1;
         x_prev = x;
         y_prev = y;
-        z_prev = z;
+        //z_prev = z;
         r = DBL_MAX; // radius
         i = DBL_MAX;
         j = DBL_MAX;

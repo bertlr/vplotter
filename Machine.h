@@ -47,6 +47,11 @@ private:
     double BaseLength;
     int z_down;
     int z_up;
+    /** -1  don't know
+     * 0 down
+     * 1 up
+     */
+    int currentZ;
     /**
     
      horizontal direction from the left stepper

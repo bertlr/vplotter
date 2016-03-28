@@ -72,6 +72,8 @@ Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm,
 
     this->currentX = 0.0;
     this->currentY = 0.0;
+    
+    this->currentZ = -1;
 
     if (wiringPiSetup() == -1) {
         std::cout << "Could not run wiringPiSetup, require root privileges!\n";
@@ -299,16 +301,22 @@ int Machine::MoveToPoint(double X, double Y, double F) {
  */
 void Machine::penDown(bool down) {
     if (down) {
+        if(this->currentZ == 0){
+            return;
+        }
         softPwmWrite(Z_SERVO, this->z_down);
         usleep(500000);
         softPwmWrite(Z_SERVO, 0);
+        this->currentZ = 0;
 
     } else {
+        if(this->currentZ == 1){
+            return;
+        }
         softPwmWrite(Z_SERVO, this->z_up);
         usleep(500000);
         softPwmWrite(Z_SERVO, 0);
-
-
+        this->currentZ = 1;
     }
 
 }
