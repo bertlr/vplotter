@@ -263,6 +263,10 @@ bool Machine::moveShortDist(double X, double Y, unsigned int time) {
  */
 int Machine::MoveToPoint(double X, double Y, double F) {
     unsigned int time = 0;
+    if(X == this->currentX && Y == this->currentY){
+        return 0;
+    }
+    
     if (F <= 0.0) {
         F = 100000; // big number for rapid speed
     }

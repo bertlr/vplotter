@@ -39,6 +39,8 @@ public:
     //int CalculateLine(double moveToX, double moveToY);
     int MoveToPoint(double X, double Y, double F);
     void penDown(bool down);
+    double getX(){return currentX;};
+    double getY(){return currentY;};
 private:
     double currentX;
     double currentY;
@@ -75,4 +77,3 @@ private:
 };
 
 #endif /* MACHINE_H */
-

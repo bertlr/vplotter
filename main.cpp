@@ -56,10 +56,6 @@ int main(int argc, char** argv) {
     double j = DBL_MAX;
     double f = 0.0; // feed in mm/min, 0 is rapid speed
 
-    double x_prev = x;
-    double y_prev = y;
-    //double z_prev = z;
-
     int M_command = -1;
     int G_command = -1;
     // Fact to convert the values, used when inches:
@@ -162,7 +158,6 @@ int main(int argc, char** argv) {
         std::stringstream is;
         std::stringstream os;
         linenumber++;
-        std::cout << linenumber << ": ";
 
         is << line;
 
@@ -211,58 +206,7 @@ int main(int argc, char** argv) {
             }
         } while (ret != 0);
 
-
-        if (G_command == 0 || G_command == 1 || G_command == 2 || G_command == 3) {
-            //if (z != z_prev) {
-            if (z > 0) {
-                //std::cout << "pen up" << std::endl;
-                m.penDown(false);
-            } else {
-                //std::cout << "pen down" << std::endl;
-                m.penDown(true);
-            }
-            //}
-            if (x != x_prev || y != y_prev) {
-                if (G_command == 0) {
-                    std::cout << "   -> rapid  to: " << x << ", " << y << std::endl;
-                    m.MoveToPoint(x, y, 0.0);
-                } else if (G_command == 1) {
-                    std::cout << "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
-                    m.MoveToPoint(x, y, f);
-                } else if (G_command == 2 || G_command == 3) {
-
-                    bool ccw;
-                    // because the y-axis is from top (-) to bottom (+)
-                    if (G_command == 2) {
-                        ccw = false;
-                    } else {
-                        ccw = true;
-                    }
-                    if (r == DBL_MAX & i < DBL_MAX && j < DBL_MAX) {
-                        r = sqrt(i * i + j * j);
-                    } else if (r != DBL_MAX) {
-
-                    } else {
-                        std::cout << "Error: either R or I and J" << std::endl;
-                        exit(1);
-                    }
-                    std::cout << "   -> arc to: " << x << ", " << y << " r=" << r << std::endl;
-                    Geometry g;
-                    std::vector<Point> points = g.getArcPolygon(Point(x_prev, y_prev), Point(x, y), r, ccw);
-                    for (int i = 0; i < points.size(); i++) {
-                        //std::cout << points[i].x << ", " << points[i].y << std::endl;
-                        x = points[i].x;
-                        y = points[i].y;
-                        //m.CalculateLine(x, y);
-                        m.MoveToPoint(x, y, f);
-                    }
-                }
-
-
-
-            }
-
-        }
+        // Execute on line:
 
         if (M_command == 30) {
             m.penDown(false);
@@ -270,13 +214,60 @@ int main(int argc, char** argv) {
             return 0;
 
         }
+
+        // movement
+        if (G_command == 0 || G_command == 1 || G_command == 2 || G_command == 3) {
+            if (z > 0) {
+                m.penDown(false);
+            } else {
+                m.penDown(true);
+            }
+            if (G_command == 1 || G_command == 2 || G_command == 3) {
+                if (f <= 0.0) {
+                    std::cout << "Error: no feed rate (f.e.: F400)" << std::endl;
+                    exit(1);
+                }
+            }
+
+            std::cout << " --> " << linenumber << ": ";
+            if (G_command == 0) {
+                std::cout << "   -> rapid  to: " << x << ", " << y << std::endl;
+                m.MoveToPoint(x, y, 0.0);
+            } else if (G_command == 1) {
+                std::cout << "   -> line  to: " << x << ", " << y << ", f=" << f << std::endl;
+                m.MoveToPoint(x, y, f);
+            } else if (G_command == 2 || G_command == 3) {
+
+                bool ccw;
+                // G2 clockwise, G3 counter clockwise
+                if (G_command == 2) {
+                    ccw = false;
+                } else {
+                    ccw = true;
+                }
+                // either r (radius) or i and k (relative center point coordinates)
+                if (r == DBL_MAX & i < DBL_MAX && j < DBL_MAX) {
+                    r = sqrt(i * i + j * j);
+                }
+                if (r == DBL_MAX) {
+                    std::cout << "Error: either R or I and J" << std::endl;
+                    exit(1);
+                } 
+                std::cout << "   -> arc to: " << x << ", " << y << " r=" << r << std::endl;
+                Geometry g;
+                std::vector<Point> points = g.getArcPolygon(Point(m.getX(), m.getY()), Point(x, y), r, ccw);
+                for (int i = 0; i < points.size(); i++) {
+                    //std::cout << points[i].x << ", " << points[i].y << std::endl;
+                    m.MoveToPoint(points[i].x, points[i].y, f);
+                }
+            }
+
+        }
+
         //std::cout << "x =" << x << " y=" << y << std::endl;
 
-        //G_command = -1;
         M_command = -1;
-        x_prev = x;
-        y_prev = y;
-        //z_prev = z;
+
         r = DBL_MAX; // radius
         i = DBL_MAX;
         j = DBL_MAX;
