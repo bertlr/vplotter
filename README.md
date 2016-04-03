@@ -6,11 +6,13 @@ Works with the [gcodetools](https://github.com/cnc-club/gcodetools) extension fo
 # Install #
 
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
+
 - install git:
 
         sudo apt-get install git-core
 
 - install wiringPi: [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
+
 - download and build vplotter:
 
         git clone https://github.com/bertlr/vplotter.git
@@ -38,7 +40,7 @@ The plotter needs some commandline arguments:
 - baselength : the distance between the stepper motors in mm, see the image.
 - z_up    :    a value for the servo motor to lift the pen (1 - 100)
 - z_down  :    a value for the servo motro to move down the pen (1 - 100)
-- steps   :    the count of steps to move the cord at 1mm:
+- steps   :    the count of steps to move the cord at 1 mm:
  
     1600 / circumference of the pulley
     
@@ -63,12 +65,11 @@ The Z-axis can only lift or drop the pen. A value >0 lift the pen, and <=0 drop 
     G0 Z0 (move the pen down)
     G0 Z1 (raise the pen up)
 
-It is possible to set a feed for G1 like
+It is possible to set a feed, but this is not exact.
     
     G1 X100 F200
 
-but this is not exact.
-It supports G2 and G3 for circles with radius:
+It supports G2 and G3 for circles with radius R:
     
     G2 X10 Y20 R20
 
