@@ -3,6 +3,11 @@
 Vplotter is a vertical plotter for g-code. It runs on a [Raspberry Pi](https://www.raspberrypi.org/). 
 Works with the [gcodetools](https://github.com/cnc-club/gcodetools) extension for [Inkscape](https://inkscape.org).
 
+v-plotter in action on youtube:
+
+[![raspberry pi v-plotter in action](http://img.youtube.com/vi/LhT2oX4Yt_c/0.jpg)](http://www.youtube.com/watch?v=LhT2oX4Yt_c "raspberry pi v-plotter in action")
+
+
 # Install #
 
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
@@ -84,5 +89,4 @@ Change units to inches:
 Change to millimetre:
 
     G21
-
 
