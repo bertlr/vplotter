@@ -15,6 +15,10 @@ v-plotter in action on youtube:
 - install git:
 
         sudo apt-get install git-core
+        
+- install flex for the lexical analyzer:
+
+        sudo apt-get install flex
 
 - install wiringPi: [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
 
