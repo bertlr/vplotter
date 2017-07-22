@@ -20,7 +20,9 @@ v-plotter in action on youtube:
 
         sudo apt-get install flex
 
-- install wiringPi: [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
+- install wiringPi [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/):
+
+        sudo apt-get install wiringpi
 
 - download and build vplotter:
 
