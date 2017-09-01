@@ -12,7 +12,7 @@ v-plotter in action on youtube:
 
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
 
-- install neccessary packages: git, cmake, flex, wiringPi [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
+- install necessary packages: git, cmake, flex, wiringPi [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
 
         sudo apt-get install git-core cmake flex wiringpi
 
@@ -22,7 +22,6 @@ v-plotter in action on youtube:
         cd vplotter
         cmake
         make
-
 
 # Wiring #
 
