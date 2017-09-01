@@ -23,12 +23,9 @@ v-plotter in action on youtube:
         cmake .
         make
 
-# Wiring #
-
-The plotter uses EasyDriver for the stepper motors:
-[www.schmalzhaus.com/EasyDriver/](http://www.schmalzhaus.com/EasyDriver/)
-
-![wiring](vplotter_wiring.png "wiring")
+- install in /usr/local/bin
+        
+        sudo make install
 
 # Usage #
 
@@ -87,4 +84,11 @@ Change units to inches:
 Change to millimetre:
 
     G21
+
+# Wiring #
+
+The plotter uses EasyDriver for the stepper motors:
+[www.schmalzhaus.com/EasyDriver/](http://www.schmalzhaus.com/EasyDriver/)
+
+![wiring](vplotter_wiring.png "wiring")
 

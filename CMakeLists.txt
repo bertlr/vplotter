@@ -11,4 +11,6 @@ add_definitions( -std=c++0x )
 
 add_executable(vplotter ${SRC_FILES})
 target_link_libraries(vplotter ${WIRINGPI_LIBRARIES}) 
+install(TARGETS vplotter
+        RUNTIME DESTINATION bin)
 
