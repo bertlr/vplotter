@@ -24,11 +24,16 @@ v-plotter in action on youtube:
 
         sudo apt-get install wiringpi
 
+- install cmake for compiling:
+
+        sudo apt-get install cmake
+
 - download and build vplotter:
 
         git clone https://github.com/bertlr/vplotter.git
         cd vplotter
-        make -f Makefile CONF=Release
+        cmake
+        make
 
 
 # Wiring #
