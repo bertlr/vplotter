@@ -22,10 +22,7 @@ v-plotter in action on youtube:
         cd vplotter
         cmake .
         make
-
-- install in /usr/local/bin
-        
-        sudo make install
+        sudo make install        
 
 # Usage #
 
@@ -49,11 +46,11 @@ The plotter needs some commandline arguments:
 
 run the plotter as root:
 
-    sudo ./vplotter --x0=170 --y0=-720 --baselength=685 --z_up=11 --z_down=7 --steps=40.1
+    sudo vplotter --x0=170 --y0=-720 --baselength=685 --z_up=11 --z_down=7 --steps=40.1
 
 provide a g-code file test.ngc:
 
-    sudo ./vplotter --x0=170 --y0=-720 --baselength=685 --z_up=11 --z_down=7 --steps=40.1 < test.ngc
+    sudo vplotter --x0=170 --y0=-720 --baselength=685 --z_up=11 --z_down=7 --steps=40.1 < test.ngc
 
 
 finish the plotter type <kbd>Ctrl</kbd>+<kbd>C</kbd> or type in the konsole:
