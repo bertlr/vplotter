@@ -12,21 +12,9 @@ v-plotter in action on youtube:
 
 - install raspian: [www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
 
-- install git:
+- install neccessary packages: git, cmake, flex, wiringPi [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/)
 
-        sudo apt-get install git-core
-        
-- install flex for the lexical analyzer:
-
-        sudo apt-get install flex
-
-- install wiringPi [wiringpi.com/download-and-install/](http://wiringpi.com/download-and-install/):
-
-        sudo apt-get install wiringpi
-
-- install cmake for compiling:
-
-        sudo apt-get install cmake
+        sudo apt-get install git-core cmake flex wiringpi
 
 - download and build vplotter:
 
