@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f1" displayName="Source" projectFiles="true" kind="ROOT">
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/Geometry.cpp</itemPath>
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/Geometry.h</itemPath>
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/Machine.cpp</itemPath>
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/Machine.h</itemPath>
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/gcode.l</itemPath>
+      <itemPath>/home/herbert/NetBeansProjects/vplotter/main.cpp</itemPath>
+    </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false"
@@ -10,6 +18,9 @@
     </logicalFolder>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>/home/herbert/NetBeansProjects/vplotter</Elem>
+  </sourceRootList>
   <projectmakefile>/home/herbert/NetBeansProjects/vplotter/Makefile</projectmakefile>
   <confs>
     <conf name="Default" type="0">
@@ -33,6 +44,36 @@
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="/home/herbert/NetBeansProjects/vplotter/Geometry.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/Geometry.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/Machine.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/Machine.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/gcode.l"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

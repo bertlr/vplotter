@@ -5,11 +5,13 @@
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>vplotter</name>
             <c-extensions/>
-            <cpp-extensions/>
-            <header-extensions/>
+            <cpp-extensions>cpp</cpp-extensions>
+            <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>/home/herbert/NetBeansProjects/vplotter</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>Default</name>
