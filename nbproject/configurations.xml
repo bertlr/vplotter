@@ -40,8 +40,7 @@
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
-          <preBuildCommand>cmake</preBuildCommand>
-          <preBuildFirst>true</preBuildFirst>
+          <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
       <item path="/home/herbert/NetBeansProjects/vplotter/Geometry.cpp"
