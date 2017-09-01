@@ -31,6 +31,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
+    <itemPath>/home/herbert/NetBeansProjects/vplotter/CMakeLists.txt</itemPath>
     <itemPath>README.md</itemPath>
     <itemPath>gcode.l</itemPath>
   </logicalFolder>
@@ -50,6 +51,11 @@
         </linkerTool>
       </compileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/CMakeLists.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -98,6 +104,11 @@
         </linkerTool>
       </compileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="/home/herbert/NetBeansProjects/vplotter/CMakeLists.txt"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Geometry.cpp" ex="false" tool="1" flavor2="0">
       </item>
