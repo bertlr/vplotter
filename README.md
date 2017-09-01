@@ -20,7 +20,7 @@ v-plotter in action on youtube:
 
         git clone https://github.com/bertlr/vplotter.git
         cd vplotter
-        cmake
+        cmake .
         make
 
 # Wiring #
