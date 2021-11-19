@@ -1,3 +1,11 @@
+# Information about this fork #
+
+Thank you to Herbert Roider for this simple but powerful v-plotter control, and for the excellent instructions on installation and use.
+
+I will use this fork to add a hardware PWM-control for a BLDC-motor. This drone-motor and propeller is used for pushing the plotter head against the paper.
+
+!!!This is a work in progress and I am a beginner programmer, so Herberts code is currently unchanged. This readme will be updated when, and if, I am able to add the functionality to Herberts code!!!
+
 # About #
 
 Vplotter is a vertical plotter for g-code. It runs on a [Raspberry Pi](https://www.raspberrypi.org/). 
