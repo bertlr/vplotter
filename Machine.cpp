@@ -1,3 +1,8 @@
+/*
+Added PWM-control of a BLDC-motor.
+By Robert Friberg
+*∕
+
 /***************************************************************************
  *   Copyright (C) 2016 by Herbert Roider                                  *
  *   herbert.roider@utanet.at                                                     *
@@ -38,19 +43,21 @@
 #include <softPwm.h>
 #include "Geometry.h"
 
-// step wiringpi pin 0
+// step wiringPi pin 0 (GPIO 17)
 #define LEFT_STEPPER01 0
-// direction  wiring pin 1
+// direction wiringPi pin 7 (GPIO 4)
 #define LEFT_STEPPER02 7
 
-
-// step  wiring pin 3
+// step wiringPi pin 3 (GPIO 22)
 #define RIGHT_STEPPER01  3
-// direction   wiring pin 4
+// direction wiringPi pin 4 (GPIO 23)
 #define RIGHT_STEPPER02  4
 
-// Wiring pi for the servo pin 1 
-#define Z_SERVO 1
+// servo wiringPi pin 2 (GPIO 27)
+#define Z_SERVO 2
+
+// BLDC wiringPi pin 1 (GPIO 18)
+//#define BLDC 1
 
 /**
  * 
