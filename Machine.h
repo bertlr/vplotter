@@ -1,8 +1,3 @@
-/*
-Added PWM-control of a BLDC-motor.
-By Robert Friberg
-*∕
-
 /***************************************************************************
  *   Copyright (C) 2016 by Herbert Roider                                  *
  *   herbert.roider@utanet.at                                                     *
@@ -38,7 +33,7 @@ By Robert Friberg
 class Machine {
 public:
     //Machine();
-    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up, int _bldc_ds);          //RF: Dutycycle for the bldc motor. Added int bldc_ds
+    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up);
     Machine(const Machine& orig);
     virtual ~Machine();
     //int CalculateLine(double moveToX, double moveToY);
