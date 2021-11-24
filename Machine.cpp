@@ -86,7 +86,7 @@ Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm,
     this->StepsPermm = _StepsPermm; // 51   //2000.0 / 98.0;
     this->z_down = _z_down;
     this->z_up = _z_up;
-    this->bldc_ds = _bldc_ds;       //RF: Dutycycle for the bldc motor. Added line
+    //this->bldc_ds = _bldc_ds;       //RF: Dutycycle for the bldc motor. Added line
 
     this->currentX = 0.0;
     this->currentY = 0.0;

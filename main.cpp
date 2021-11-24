@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
-            {"BLDC-Dytycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line
+            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle.
 
             {0, 0, 0, 0}
         };
@@ -149,9 +149,9 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
-            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m
+            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle
                 bldc_ds = atof(optarg);
-                std::cout << "BLDC-Dytycycle = " << bldc_ds << std::endl;
+                std::cout << "bldc_dutycycle = " << bldc_ds << std::endl;
                 count_options++;
                 break;
 
