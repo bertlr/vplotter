@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with bldc-ds argument at startup.
+
+Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
 wiringPi only supports hardware pwm on pin 1.
 No other changes in original code.
