@@ -1,6 +1,11 @@
 /*
-Added PWM-control of a BLDC-motor.
+Added PWM-control for a BLDC-motor.
 By Robert Friberg
+
+This version:
+In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
+wiringPi only supports hardware pwm on pin 1.
+No other changes in original code.
 *∕
 
 /***************************************************************************
@@ -72,7 +77,6 @@ int main(int argc, char** argv) {
     double stepsPermm = 40.0;
     int servo_up = 13;
     int servo_down = 8;
-    int bldc_ds = 0; //RF: Dutycycle for the bldc motor. Added line
 
     int c;
     int count_options = 0;
@@ -88,14 +92,13 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
-            {"BLDC-Dytycycle", required_argument, 0, 'c'}, //RF: Dutycycle for the bldc motor Added line
 
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:p:c:", //RF: Dutycycle for the bldc motor. Added c:
+        c = getopt_long(argc, argv, "b:y:x:s:u:p:",
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -141,17 +144,11 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
-            case 'c':                                                    //RF: Dutycycle for the bldc motor. Added case c
-                bldc_ds = atof(optarg);
-                std::cout << "BLDC-Dytycycle = " << bldc_ds << std::endl;
-                count_options++;
-                break;
-
             default:
                 abort();
         }
     }
-    if (count_options < 7) {                                             //RF: Dutycycle for the bldc motor. Changed from 6 to 7
+    if (count_options < 6) {
         std::cout << "not all options are set" << std::endl;
         exit(1);
     }
@@ -162,7 +159,7 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_ds);           //RF: Dutycycle for the bldc motor. Added bldc_ds
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
     std::cout << "started" << std::endl;
 
     std::string line;

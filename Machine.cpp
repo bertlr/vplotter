@@ -1,6 +1,11 @@
 /*
-Added PWM-control of a BLDC-motor.
+Added PWM-control for a BLDC-motor.
 By Robert Friberg
+
+This version:
+In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
+wiringPi only supports hardware pwm on pin 1.
+No other changes in original code.
 *∕
 
 /***************************************************************************
@@ -47,6 +52,7 @@ By Robert Friberg
 #define LEFT_STEPPER01 0
 // direction wiringPi pin 7 (GPIO 4)
 #define LEFT_STEPPER02 7
+
 
 // step wiringPi pin 3 (GPIO 22)
 #define RIGHT_STEPPER01  3
