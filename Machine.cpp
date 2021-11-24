@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with bldc-ds argument at startup.
+
+Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
 wiringPi only supports hardware pwm on pin 1.
 No other changes in original code.
@@ -73,8 +76,9 @@ No other changes in original code.
  * @param _StepsPermm  Steps per mm, for microsteping: 1600 / circumference of the pulley
  * @param _z_down  value for the servo to turn the pen down to the paper
  * @param _z_up   value for the servo to lift the pen from the paper
+ * @param _bldc_ds   value for the bldc dytycycle                                                //RF: Dutycycle for the bldc motor. Added line
  */
-Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {
+Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up, double _bldc_ds) {           //RF: Dutycycle for the bldc motor. Added double bldc_ds
     this->BaseLength = _BaseLength;
     this->X0 = _X0;
     this->Y0 = _Y0;
@@ -82,6 +86,7 @@ Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm,
     this->StepsPermm = _StepsPermm; // 51   //2000.0 / 98.0;
     this->z_down = _z_down;
     this->z_up = _z_up;
+    this->bldc_ds = _bldc_ds;       //RF: Dutycycle for the bldc motor. Added line
 
     this->currentX = 0.0;
     this->currentY = 0.0;

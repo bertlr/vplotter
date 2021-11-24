@@ -1,3 +1,16 @@
+/*
+Added PWM-control for a BLDC-motor.
+By Robert Friberg
+
+This version:
+Experimenting with bldc-ds argument at startup.
+
+Previous version:
+In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
+wiringPi only supports hardware pwm on pin 1.
+No other changes in original code.
+*∕
+
 /***************************************************************************
  *   Copyright (C) 2016 by Herbert Roider                                  *
  *   herbert.roider@utanet.at                                                     *
@@ -33,7 +46,7 @@
 class Machine {
 public:
     //Machine();
-    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up);
+    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up, double _bldc_ds);   //RF: Dutycycle for the bldc motor. Added double _bldc_ds
     Machine(const Machine& orig);
     virtual ~Machine();
     //int CalculateLine(double moveToX, double moveToY);

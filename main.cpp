@@ -80,6 +80,7 @@ int main(int argc, char** argv) {
     double stepsPermm = 40.0;
     int servo_up = 13;
     int servo_down = 8;
+    double bldc_ds = 0; //RF: Dutycycle for the bldc motor. Added line
 
     int c;
     int count_options = 0;
@@ -95,13 +96,14 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
+            {"BLDC-Dytycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line
 
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:p:",
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -147,11 +149,17 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
+            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m
+                bldc_ds = atof(optarg);
+                std::cout << "BLDC-Dytycycle = " << bldc_ds << std::endl;
+                count_options++;
+                break;
+
             default:
                 abort();
         }
     }
-    if (count_options < 6) {
+    if (count_options < 7) {                                            //RF: Dutycycle for the bldc motor. Changed from 6 to 7
         std::cout << "not all options are set" << std::endl;
         exit(1);
     }
@@ -162,7 +170,7 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_ds);
     std::cout << "started" << std::endl;
 
     std::string line;
