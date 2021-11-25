@@ -90,7 +90,7 @@ int main(int argc, char** argv) {
 
             /* These options don’t set a flag.
                We distinguish them by their indices. */
-            //{"baselength", required_argument, 0, 'b'},
+            {"baselength", required_argument, 0, 'b'},
             {"y0", required_argument, 0, 'y'},
             {"x0", required_argument, 0, 'x'},
             {"steps", required_argument, 0, 's'},
