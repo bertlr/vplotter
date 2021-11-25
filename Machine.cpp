@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with generating pwm output for bldc
+
+Previous version:
 Experimenting with bldc-ds argument at startup.
 Argument for bldc_dutycycle working. Not doing anything with it yet.
 
@@ -67,7 +70,19 @@ No other changes in original code.
 #define Z_SERVO 2
 
 // BLDC wiringPi pin 1 (GPIO 18)
-//#define BLDC 1
+#define BLDC 1                       //RF: Added define
+
+//RF: Function for starting the bldc motor here
+void startBLDC(dc)
+{
+    pinMode (BLDC, PWM_OUTPUT) ;
+    pwmSetMode(PWM_MODE_MS);
+    pwmSetClock(384); //clock at 50kHz (20us tick)
+    pwmSetRange(1000); //range at 1000 ticks (20ms)
+    pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
+}
+
+
 
 /**
  * 
@@ -77,9 +92,8 @@ No other changes in original code.
  * @param _StepsPermm  Steps per mm, for microsteping: 1600 / circumference of the pulley
  * @param _z_down  value for the servo to turn the pen down to the paper
  * @param _z_up   value for the servo to lift the pen from the paper
- * @param _bldc_dc   value for the bldc dytycycle                                                //RF: Dutycycle for the bldc motor. Added line
  */
-Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up, int _bldc_dc) {           //RF: Dutycycle for the bldc motor. Added double bldc_dc. changed fron double to int.
+Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {           //RF: Edited back to original.
     this->BaseLength = _BaseLength;
     this->X0 = _X0;
     this->Y0 = _Y0;
@@ -87,7 +101,6 @@ Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm,
     this->StepsPermm = _StepsPermm; // 51   //2000.0 / 98.0;
     this->z_down = _z_down;
     this->z_up = _z_up;
-    //this->bldc_dc = _bldc_dc;       //RF: Dutycycle for the bldc motor. Added line
 
     this->currentX = 0.0;
     this->currentY = 0.0;

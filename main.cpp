@@ -61,6 +61,11 @@ No other changes in original code.
 #define yyFlexLexer xxFlexLexer
 #include <FlexLexer.h>
 
+//RF: Function definitions
+void startBLDC(int);
+//void stopBLDC(int);
+
+
 /*
  * 
  */
@@ -175,7 +180,15 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_dc);
+    //RF: PWM output to the bldc motor
+    std::cout << "Starting BLDC-Motor" << std::endl;
+
+    //RF: Calling function to start bldc here
+    
+    startBLDC(bldc_dc);
+    
+    
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);       //RF: Edited back to original.
     std::cout << "started" << std::endl;
 
     std::string line;
