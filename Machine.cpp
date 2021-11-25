@@ -73,7 +73,7 @@ No other changes in original code.
 #define BLDC 1                       //RF: Added define
 
 //RF: Function for starting the bldc motor here
-void startBLDC(dc)
+void startBLDC(int dc)
 {
     pinMode (BLDC, PWM_OUTPUT) ;
     pwmSetMode(PWM_MODE_MS);
