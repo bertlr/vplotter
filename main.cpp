@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:d:m",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
+        c = getopt_long(argc, argv, ":b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
