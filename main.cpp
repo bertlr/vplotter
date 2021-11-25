@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
     double stepsPermm = 40.0;
     int servo_up = 13;
     int servo_down = 8;
-    double bldc_ds = 0; //RF: Dutycycle for the bldc motor. Added line
+    int bldc_dc = 0; //RF: Dutycycle for the bldc motor. Added line. Changed fron double to int.
 
     int c;
     int count_options = 0;
@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, ":b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b.
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -150,8 +150,8 @@ int main(int argc, char** argv) {
                 break;
 
             case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle
-                bldc_ds = atof(optarg);
-                std::cout << "bldc_dutycycle = " << bldc_ds << std::endl;
+                bldc_dc = atof(optarg);
+                std::cout << "bldc_dutycycle = " << bldc_dc << std::endl;
                 count_options++;
                 break;
 
@@ -170,7 +170,7 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_ds);
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_dc);
     std::cout << "started" << std::endl;
 
     std::string line;
