@@ -61,7 +61,6 @@ No other changes in original code.
  * 
  */
 int main(int argc, char** argv) {
-    std::cout << "RF: Start of main test";
     double x = 0.0;
     double y = 0.0;
     double z = 1.0;
@@ -166,6 +165,7 @@ int main(int argc, char** argv) {
     }
 
     // end read options
+    std::cout << "RF: Start plotter test";
     std::cout << "--------------------------------------------------------------" << std::endl
             << "                  VPLOTTER                                    " << std::endl
             << "--------------------------------------------------------------" << std::endl;
