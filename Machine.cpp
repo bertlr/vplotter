@@ -4,6 +4,7 @@ By Robert Friberg
 
 This version:
 Experimenting with bldc-ds argument at startup.
+Argument for bldc_dutycycle working. Not doing anything with it yet.
 
 Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.

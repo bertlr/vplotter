@@ -4,6 +4,7 @@ By Robert Friberg
 
 This version:
 Experimenting with bldc-ds argument at startup.
+Argument for bldc_dutycycle working. Not doing anything with it yet.
 
 Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
@@ -80,7 +81,7 @@ int main(int argc, char** argv) {
     double stepsPermm = 40.0;
     int servo_up = 13;
     int servo_down = 8;
-    int bldc_dc = 0; //RF: Dutycycle for the bldc motor. Added line. Changed fron double to int.
+    int bldc_dc = 0; //RF: Dutycycle for the bldc motor.
 
     int c;
     int count_options = 0;
@@ -96,14 +97,14 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
-            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle.
+            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor.
 
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -149,7 +150,7 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
-            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle. Changet atof to atoi.
+            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changet atof to atoi.
                 bldc_dc = atoi(optarg);
                 std::cout << "bldc_dutycycle = " << bldc_dc << std::endl;
                 count_options++;
@@ -165,7 +166,7 @@ int main(int argc, char** argv) {
     }
 
     // end read options
-    std::cout << "RF: Start plotter test";
+
     std::cout << "--------------------------------------------------------------" << std::endl
             << "                  VPLOTTER                                    " << std::endl
             << "--------------------------------------------------------------" << std::endl;
