@@ -75,6 +75,9 @@ No other changes in original code.
 //RF: Function for starting the bldc motor here
 void startBLDC(int dc)
 {
+    if (wiringPiSetup () == -1) //using wPi pin numbering
+        exit (1) ;
+        
     pinMode (BLDC, PWM_OUTPUT) ;
     pwmSetMode(PWM_MODE_MS);
     pwmSetClock(384); //clock at 50kHz (20us tick)
