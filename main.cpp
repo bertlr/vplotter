@@ -98,12 +98,12 @@ int main(int argc, char** argv) {
             {"z_down", required_argument, 0, 'd'},
             {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle.
 
-            {0, 0, 0, 0},
+            {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
