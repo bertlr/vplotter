@@ -93,6 +93,7 @@ int main(int argc, char** argv) {
             {"baselength", required_argument, 0, 'b'},
             {"y0", required_argument, 0, 'y'},
             {"x0", required_argument, 0, 'x'},
+            {"a", required_argument, 0, 'a'},
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
@@ -103,7 +104,7 @@ int main(int argc, char** argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
+        c = getopt_long(argc, argv, "b:y:x:a:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
