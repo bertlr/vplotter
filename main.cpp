@@ -39,6 +39,7 @@ No other changes in original code.
  * Created on 12. Februar 2016, 22:15
  */
 
+#include <stdio.h>   //RF: Added
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -56,6 +57,8 @@ No other changes in original code.
 #undef yyFlexLexer
 #define yyFlexLexer xxFlexLexer
 #include <FlexLexer.h>
+
+printf("RF: Before main");
 
 /*
  * 
@@ -103,7 +106,7 @@ int main(int argc, char** argv) {
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, ":b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d. Added : before b. Removed :.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
