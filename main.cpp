@@ -39,7 +39,6 @@ No other changes in original code.
  * Created on 12. Februar 2016, 22:15
  */
 
-#include <stdio.h>   //RF: Added
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -58,12 +57,11 @@ No other changes in original code.
 #define yyFlexLexer xxFlexLexer
 #include <FlexLexer.h>
 
-printf("RF: Before main");
-
 /*
  * 
  */
 int main(int argc, char** argv) {
+    std::cout << "RF: Start of main test";
     double x = 0.0;
     double y = 0.0;
     double z = 1.0;
