@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with generating pwm output for bldc
+
+Previous version:
 Experimenting with bldc-ds argument at startup.
 Argument for bldc_dutycycle working. Not doing anything with it yet.
 
