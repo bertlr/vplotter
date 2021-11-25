@@ -98,7 +98,7 @@ int main(int argc, char** argv) {
             {"z_down", required_argument, 0, 'd'},
             {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor. Added line. Changed BLDC-Dutycycle to BLDC_Dutycycle to bldc_dutycycle.
 
-            {0, 0, 0, 0}
+            {0, 0, 0, 0},
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
