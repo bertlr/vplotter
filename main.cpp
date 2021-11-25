@@ -3,6 +3,10 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with bldc-ds argument at startup.
+Argument for bldc_dutycycle working. Not doing anything with it yet.
+
+Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
 wiringPi only supports hardware pwm on pin 1.
 No other changes in original code.
@@ -77,6 +81,7 @@ int main(int argc, char** argv) {
     double stepsPermm = 40.0;
     int servo_up = 13;
     int servo_down = 8;
+    int bldc_dc = 0; //RF: Dutycycle for the bldc motor.
 
     int c;
     int count_options = 0;
@@ -92,13 +97,14 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
+            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor.
 
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:p:",
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -144,22 +150,29 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
+            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changet atof to atoi.
+                bldc_dc = atoi(optarg);
+                std::cout << "bldc_dutycycle = " << bldc_dc << std::endl;
+                count_options++;
+                break;
+
             default:
                 abort();
         }
     }
-    if (count_options < 6) {
+    if (count_options < 7) {                                            //RF: Dutycycle for the bldc motor. Changed from 6 to 7
         std::cout << "not all options are set" << std::endl;
         exit(1);
     }
 
     // end read options
+
     std::cout << "--------------------------------------------------------------" << std::endl
             << "                  VPLOTTER                                    " << std::endl
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_dc);
     std::cout << "started" << std::endl;
 
     std::string line;
