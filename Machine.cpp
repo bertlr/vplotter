@@ -75,16 +75,23 @@ No other changes in original code.
 //RF: Function for starting the bldc motor here
 void startBLDC(int dc)
 {
-    if (wiringPiSetup () == -1) //using wPi pin numbering
+    #define dcStart 50
+
+    if (wiringPiSetup () == -1) //using wiringPi pin numbering
         exit (1) ;
 
     pinMode (BLDC, PWM_OUTPUT) ;
     pwmSetMode(PWM_MODE_MS);
     pwmSetClock(384); //clock at 50kHz (20us tick)
     pwmSetRange(1000); //range at 1000 ticks (20ms)
-    pwmWrite(BLDC, 50); //RF: Trottle down
+    pwmWrite(BLDC, dcStart); //RF: Trottle down
     sleep(2);//RF: wait 2 sec
-    pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
+    for (int i = dcStart; i < dc; i++)
+    {
+        pwmWrite(BLDC, dcStart + i);
+        usleep(500000);
+    }
+    //pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
 }
 
 
