@@ -90,7 +90,7 @@ void startBLDC(int dc)
     for (int i = dcStart; i < dc; i++)
     {
         pwmWrite(BLDC, dcRamp);
-        sleep(1);
+        usleep(500000);
         dcRamp++;
     }
     //pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
