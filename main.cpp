@@ -3,7 +3,11 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with sanity check for bldc_dutycycle.
+
+Previous version:
 Experimenting with stopping the bldc motor on ctrl+c
+Program catches ctrl+c and stops bldc motor before exit.
 
 Previous version:
 Experimenting with generating pwm output for bldc.

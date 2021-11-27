@@ -7,9 +7,14 @@ I will use this fork to add a hardware PWM-control for a BLDC-motor. This drone-
 !!!This is a work in progress. Do not use the code from this repository! I am a beginner programmer, so this might take some time, but this readme will be updated when, and if, I am able to add the functionality to Herberts code!!!
 
 This version:
+Program catches ctrl+c and stops bldc motor before exit.
+
+This version:
 Catching command line argument for bldc_dutycycle. Calling function for starting and stopping the bldc motor.
+
 Previous version:
 Got command line argument for bldc_dutycycle to work, but are not using the value for anything yet.
+
 Previous version:
 In Machine.cpp - Moving Z_SERVO from wiringPi pin 1 to pin 2, freeing pin 1 for the bldc motor.
 wiringPi only supports hardware pwm on pin 1.
