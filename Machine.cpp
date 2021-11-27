@@ -75,7 +75,7 @@ No other changes in original code.
 //RF: Function for starting the bldc motor here
 void startBLDC(int dc)
 {
-    #define dcStart 50
+    #define dcStart 40
 
     if (wiringPiSetup () == -1) //using wiringPi pin numbering
         exit (1) ;
