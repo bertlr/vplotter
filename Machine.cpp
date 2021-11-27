@@ -86,14 +86,14 @@ void startBLDC(int dc)
     pwmSetRange(1000); //range at 1000 ticks (20ms)
     pwmWrite(BLDC, dcStart); //RF: Trottle down
     sleep(2);//RF: wait 2 sec
-    int dcRamp = dcStart;
+    /*int dcRamp = dcStart;
     for (int i = dcStart; i < dc; i++)
     {
         pwmWrite(BLDC, dcRamp);
         usleep(500000);
         dcRamp++;
-    }
-    //pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
+    }*/
+    pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
 }
 
 
