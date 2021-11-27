@@ -3,7 +3,11 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
-Experimenting with generating pwm output for bldc
+Experimenting with stopping the bldc motor on ctrl+c
+
+Previous version:
+Experimenting with generating pwm output for bldc.
+Catching command line argument for bldc_dutycycle. Calling function for starting and stopping the bldc motor.
 
 Previous version:
 Experimenting with bldc-ds argument at startup.
@@ -69,7 +73,7 @@ No other changes in original code.
 // servo wiringPi pin 2 (GPIO 27)
 #define Z_SERVO 2
 
-// BLDC wiringPi pin 1 (GPIO 18)    //RF: Added define
+// BLDC wiringPi pin 1 (GPIO 18)    //RF: Added define.
 #define BLDC 1
 
 //RF: Function for starting and stopping the bldc motor.
@@ -84,11 +88,10 @@ void startstopBLDC(int dc)
     pwmSetMode(PWM_MODE_MS);
     pwmSetClock(384); //clock at 50kHz (20us tick)
     pwmSetRange(1000); //range at 1000 ticks (20ms)
-    pwmWrite(BLDC, dcStart); //RF: Trottle down
-    sleep(2);//RF: wait 2 sec
+    pwmWrite(BLDC, dcStart); //RF: Trottle down.
+    sleep(2);//RF: wait 2 sec.
     pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
 }
-
 
 
 /**
@@ -100,7 +103,7 @@ void startstopBLDC(int dc)
  * @param _z_down  value for the servo to turn the pen down to the paper
  * @param _z_up   value for the servo to lift the pen from the paper
  */
-Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {           //RF: Edited back to original.
+Machine::Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up) {
     this->BaseLength = _BaseLength;
     this->X0 = _X0;
     this->Y0 = _Y0;

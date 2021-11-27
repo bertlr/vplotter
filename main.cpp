@@ -3,7 +3,11 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
-Experimenting with generating pwm output for bldc
+Experimenting with stopping the bldc motor on ctrl+c
+
+Previous version:
+Experimenting with generating pwm output for bldc.
+Catching command line argument for bldc_dutycycle. Calling function for starting and stopping the bldc motor.
 
 Previous version:
 Experimenting with bldc-ds argument at startup.
@@ -104,14 +108,14 @@ int main(int argc, char** argv) {
             {"steps", required_argument, 0, 's'},
             {"z_up", required_argument, 0, 'u'},
             {"z_down", required_argument, 0, 'd'},
-            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: Dutycycle for the bldc motor.
+            {"bldc_dutycycle", required_argument, 0, 'm'}, //RF: bldc motor.
 
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: Dutycycle for the bldc motor. Added m: Changed p to d.
+        c = getopt_long(argc, argv, "b:y:x:s:u:d:m:",           //RF: bldc motor. Added m: Changed p to d.
                 long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -157,7 +161,7 @@ int main(int argc, char** argv) {
                 count_options++;
                 break;
 
-            case 'm':                                                    //RF: Dutycycle for the bldc motor. Added case m. Changet atof to atoi.
+            case 'm':                                                    //RF: bldc motor. Added case m. Changet atof to atoi.
                 bldc_dc = atoi(optarg);
                 std::cout << "bldc_dutycycle = " << bldc_dc << std::endl;
                 count_options++;
@@ -167,7 +171,7 @@ int main(int argc, char** argv) {
                 abort();
         }
     }
-    if (count_options < 7) {                                            //RF: Dutycycle for the bldc motor. Changed from 6 to 7
+    if (count_options < 7) {                                            //RF: bldc motor. Changed from 6 to 7
         std::cout << "not all options are set" << std::endl;
         exit(1);
     }
@@ -179,7 +183,7 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    //RF: Dutycycle for the bldc motor
+    //RF: bldc motor
     std::cout << "Starting BLDC-Motor" << std::endl;
 
     //RF: Calling function to start bldc motor
@@ -187,7 +191,7 @@ int main(int argc, char** argv) {
     
     
     Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
-    std::cout << "Vplotter started" << std::endl;
+    std::cout << "Vplotter started" << std::endl;                      //RF: Changed from "started" to "Vplotter started"
 
     std::string line;
     int linenumber = 0;
