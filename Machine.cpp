@@ -93,6 +93,13 @@ void startstopBLDC(int dc)
     pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
 }
 
+//RF: Signal handler for SIGINT
+void sigintHandler(int signum)
+{
+    startstopBLDC(0);
+    exit(signum);
+}
+
 
 /**
  * 
