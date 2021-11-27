@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with generating pwm output for bldc
+
+Previous version:
 Experimenting with bldc-ds argument at startup.
 Argument for bldc_dutycycle working. Not doing anything with it yet.
 
@@ -57,6 +60,10 @@ No other changes in original code.
 #undef yyFlexLexer
 #define yyFlexLexer xxFlexLexer
 #include <FlexLexer.h>
+
+//RF: Function declaration for bldc motor
+void startstopBLDC(int);
+
 
 /*
  * 
@@ -172,8 +179,15 @@ int main(int argc, char** argv) {
             << "--------------------------------------------------------------" << std::endl;
 
 
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up, bldc_dc);
-    std::cout << "started" << std::endl;
+    //RF: Dutycycle for the bldc motor
+    std::cout << "Starting BLDC-Motor" << std::endl;
+
+    //RF: Calling function to start bldc motor
+    startstopBLDC(bldc_dc);
+    
+    
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
+    std::cout << "Vplotter started" << std::endl;
 
     std::string line;
     int linenumber = 0;
@@ -298,6 +312,9 @@ int main(int argc, char** argv) {
 
 
     }
+    //RF: Calling function to stop bldc motor
+    startstopBLDC(0);
+
     std::cout << "Finish" << std::endl;
     return 0;
 }

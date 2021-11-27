@@ -3,6 +3,10 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Experimenting with generating pwm output for bldc.
+Currently no changes in Machine.h
+
+Previous version:
 Experimenting with bldc-ds argument at startup.
 Argument for bldc_dutycycle working. Not doing anything with it yet.
 
@@ -47,7 +51,7 @@ No other changes in original code.
 class Machine {
 public:
     //Machine();
-    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up, int _bldc_dc);   //RF: Dutycycle for the bldc motor. Added double _bldc_dc, Changed fron double ti int.
+    Machine(double _BaseLength, double _X0, double _Y0, double _StepsPermm, int _z_down, int _z_up);          //RF: Edited back to original.
     Machine(const Machine& orig);
     virtual ~Machine();
     //int CalculateLine(double moveToX, double moveToY);
