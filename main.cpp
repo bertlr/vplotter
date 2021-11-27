@@ -61,9 +61,8 @@ No other changes in original code.
 #define yyFlexLexer xxFlexLexer
 #include <FlexLexer.h>
 
-//RF: Function definitions for bldc motor
-void startBLDC(int);
-//void stopBLDC(int);
+//RF: Function declaration for bldc motor
+void startstopBLDC(int);
 
 
 /*
@@ -183,11 +182,11 @@ int main(int argc, char** argv) {
     //RF: Dutycycle for the bldc motor
     std::cout << "Starting BLDC-Motor" << std::endl;
 
-    //RF: Calling function to start bldc
-    startBLDC(bldc_dc);
+    //RF: Calling function to start bldc motor
+    startstopBLDC(bldc_dc);
     
     
-    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);       //RF: Edited back to original.
+    Machine m(base_length, x0, y0, stepsPermm, servo_down, servo_up);
     std::cout << "Vplotter started" << std::endl;
 
     std::string line;
@@ -313,6 +312,9 @@ int main(int argc, char** argv) {
 
 
     }
+    //RF: Calling function to stop bldc motor
+    startstopBLDC(0);
+
     std::cout << "Finish" << std::endl;
     return 0;
 }

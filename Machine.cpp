@@ -69,13 +69,13 @@ No other changes in original code.
 // servo wiringPi pin 2 (GPIO 27)
 #define Z_SERVO 2
 
-// BLDC wiringPi pin 1 (GPIO 18)
-#define BLDC 1                       //RF: Added define
+// BLDC wiringPi pin 1 (GPIO 18)    //RF: Added define
+#define BLDC 1
 
-//RF: Function for starting the bldc motor here
-void startBLDC(int dc)
+//RF: Function for starting and stopping the bldc motor.
+void startstopBLDC(int dc)
 {
-    #define dcStart 10
+    #define dcStart 10   //RF: The ECS I am using needs a low value > 0 to register "trottle down".
 
     if (wiringPiSetup () == -1) //using wiringPi pin numbering
         exit (1) ;
@@ -86,13 +86,6 @@ void startBLDC(int dc)
     pwmSetRange(1000); //range at 1000 ticks (20ms)
     pwmWrite(BLDC, dcStart); //RF: Trottle down
     sleep(2);//RF: wait 2 sec
-    /*int dcRamp = dcStart;
-    for (int i = dcStart; i < dc; i++)
-    {
-        pwmWrite(BLDC, dcRamp);
-        usleep(500000);
-        dcRamp++;
-    }*/
     pwmWrite(BLDC, dc);  //theretically 50 (1ms) to 100 (2ms)
 }
 
