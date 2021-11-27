@@ -59,6 +59,7 @@ No other changes in original code.
 #include "Machine.h"
 #include "Geometry.h"
 #include <getopt.h>
+#include <signal.h>
 
 // siehe manpages flex :
 #undef yyFlexLexer
@@ -67,12 +68,17 @@ No other changes in original code.
 
 //RF: Function declaration for bldc motor
 void startstopBLDC(int);
-
+//RF: Function declaration for SIGINT signal handling (Catching ctrl+c)
+void sigintHandler(int signum);
 
 /*
  * 
  */
 int main(int argc, char** argv) {
+
+//RF: SIGINT handling catching ctrl+c
+signal(SIGINT, sigintHandler);
+
     double x = 0.0;
     double y = 0.0;
     double z = 1.0;
