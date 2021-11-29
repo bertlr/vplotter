@@ -12,7 +12,7 @@ Sanity check for bldc_dc values is working.
 Previous version:
 Program catches ctrl+c and stops bldc motor before exit.
 
-This version:
+Previous version:
 Catching command line argument for bldc_dutycycle. Calling function for starting and stopping the bldc motor.
 
 Previous version:
