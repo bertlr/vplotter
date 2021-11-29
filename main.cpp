@@ -182,9 +182,17 @@ signal(SIGINT, sigintHandler);
         }
     }
     if (count_options < 7) {                                            //RF: bldc motor. Changed from 6 to 7
-        std::cout << "not all options are set" << std::endl;
+        std::cout << "Not all options are set" << std::endl;
         exit(1);
     }
+
+    //RF: Sanity check for bldc_dc values
+    if (bldc_dc < 50 || bldc_dc > 100)
+    {
+        std::cout << "The value for bldc_dutycycle must be between 50 and 100" << std::endl;
+        exit(1);
+    }
+
 
     // end read options
 
