@@ -7,6 +7,9 @@ I will use this fork to add a hardware PWM-control for a BLDC-motor. This drone-
 !!!This is a work in progress. Do not use the code from this repository! I am a beginner programmer, so this might take some time, but this readme will be updated when, and if, I am able to add the functionality to Herberts code!!!
 
 This version:
+Sanity check for bldc_dc values is working.
+
+Previous version:
 Program catches ctrl+c and stops bldc motor before exit.
 
 This version:

@@ -3,6 +3,9 @@ Added PWM-control for a BLDC-motor.
 By Robert Friberg
 
 This version:
+Sanity check for bldc_dc values is working.
+
+Previous version:
 Experimenting with sanity check for bldc_dutycycle.
 
 Previous version:
